@@ -74,7 +74,13 @@ main h1{
     height: 5px;
     margin-top: -34px;
 }
-main div{
+.produtos{
+    margin: 0;
+    background-color: #faf2e8;
+    height: 700px;
+    width: 100%;
+}
+main div.caixas{
     display: block;
     float: left;
     height: 350px;
@@ -84,7 +90,7 @@ main div{
     border-radius: 10px;
     margin-bottom: 10px;
 }
-main div:hover{
+main div.caixas:hover{
     transform: scale(1.04);
     transition: 0.5s;
 }
@@ -134,7 +140,7 @@ aside{
     border: #5c3327 3px solid;
     border-radius: 10px;
     float: right;
-    
+    display: none;
     width: 40%;
     height: 1515px;
     margin-top: -70px; 
