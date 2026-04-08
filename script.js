@@ -32,19 +32,38 @@ function mostrarProdutos() {
                 <h2>${ovo.titulo}</h2>
                 <h2 class="preco1">${ovo.precoAntigo}</h2>
                 <h2 class="preco2">${ovo.precoNovo}</h2>
-                <button class="botaoadd">Adicionar ao carrinho</button>
+                <button class="botaoadd" data-index="${index}">Adicionar ao carrinho</button>
             </div>
         `).join('');
     }
 }
  
-mostrarProdutos()
+mostrarProdutos();
 
 /* */
-let arraycarrinho = new Array(contagem)
+let arraycarrinho = [];
+const listaCarrinho = document.getElementById("listacarrinho");
+btnAddCarrinho = document.querySelectorAll(".botaoadd");
 
-/*adicionar produto no carrinho*/
-const btnAddCarrinho = document.getElementsByClassName("botaoadd");
-btnAddCarrinho.addEventListener("click", () => {
+btnAddCarrinho.forEach(botao => {
+    botao.addEventListener("click", () => {
+        const index = botao.getAttribute("data-index").
+        arraycarrinho.push(ovos[index]);
+        displayContagem.innerText = arraycarrinho.length;
+        botarnoCarrinho();
+    });
     
-})
+});
+
+
+function botarnoCarrinho() {
+    if (arraycarrinho.length === 0) {
+        listaCarrinho.innerText("Seu carrinho está vazio.")
+        return;
+    } else {
+      listaCarrinho.innerHTML = arraycarrinho.map(item => `
+        <p>${item.titulo}</p>
+        <p>${item.precoNovo}</p>
+     `).join('');
+    }
+};
