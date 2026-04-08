@@ -12,21 +12,54 @@ btnCarrinho.addEventListener("click", () => {
 });
 
 /*aparecer os produtos no html*/
-let todos = document.querySelector('.produtos');
+let produtos = document.querySelector('.produtos');
 const displayContagem = document.getElementById('contagem')
+
  
-let ovoFerrero = {
+let ovos = [{
     titulo: "Ovo de Páscoa Ferrero Rocher",
     precoAntigo: "R$143,99",
     precoNovo: "R$99,99",
-    foto: "./ovo_pascoa_ferrero_rocher_365gr_6279cfbf-9f38-4ac0-ba24-94157bac9744.jpg"
-};
+    foto: "./imagens/ovo_pascoa_ferrero_rocher_365gr_6279cfbf-9f38-4ac0-ba24-94157bac9744.jpg"
+}, 
+{
+    titulo: "Ovo de Páscoa Garoto Caribe",
+    precoAntigo: "R$97,99",
+    precoNovo: "R$59,99",
+    foto: "./imagens/1653742c-OvoDePscoaGarotoCaribe229G_59540.webp"
+},
+{
+    titulo: "Ovo de Páscoa Lacta Oreo",
+    precoAntigo: "R$92,98",
+    precoNovo: "R$57,99",
+    foto: "./imagens/Ovo-de-Pascoa-Lacta-Oreo-239g-1-.webp"
+}, 
+{
+    titulo: "Ovo de Páscoa Borussia",
+    precoAntigo: "R$133,99",
+    precoNovo: "R$79,99",
+    foto: "./imagens/ovo_de_pascoa_chocolate_ao_leite_100gr_unidade_borussia_chocolates_557_1_89d4e2c760e9634da28948439f373b8f_20250925163501.webp"
+},
+{
+    titulo: "Ovo de Páscoa ao leite Baton",
+    precoAntigo: "R$121,99",
+    precoNovo: "R$68,97",
+    foto: "./imagens/ovo_de_pascoa_nestle_baton_chocolate_ao_leite_204g_e19912b8-0d34-4824-8af8-fc37fd914596.jpeg"
+},
+{
+    titulo: "Ovo de Páscoa ao leite Cacauê",
+    precoAntigo: "R$103,99",
+    precoNovo: "R$73,99",
+    foto: "./imagens/ovo-de-pascoa-ao-leite-140g-cacaue_1250812.webp"
+},
+{
+    titulo: "Ovo de Páscoa Branco com Cookies TopMalu",
+    precoAntigo: "R$113,99",
+    precoNovo: "R$79,99",
+    foto: "./imagens/5338270-800-auto.webp"
+}];
  
-let ovos = Array(7).fill(ovoFerrero);
- 
-function mostrarProdutos() {
-    if (todos) {
-        todos.innerHTML = ovos.map(ovo => `
+produtos.innerHTML = ovos.map((ovo, index) => `
             <div class="caixas">
                 <img src="${ovo.foto}" alt="${ovo.titulo}">
                 <h2>${ovo.titulo}</h2>
@@ -35,35 +68,31 @@ function mostrarProdutos() {
                 <button class="botaoadd" data-index="${index}">Adicionar ao carrinho</button>
             </div>
         `).join('');
-    }
-}
- 
-mostrarProdutos();
-
 /* */
 let arraycarrinho = [];
 const listaCarrinho = document.getElementById("listacarrinho");
 btnAddCarrinho = document.querySelectorAll(".botaoadd");
 
-btnAddCarrinho.forEach(botao => {
-    botao.addEventListener("click", () => {
-        const index = botao.getAttribute("data-index").
-        arraycarrinho.push(ovos[index]);
+btnAddCarrinho.forEach(btnAddCarrinho => {
+    btnAddCarrinho.addEventListener("click", () => {
+        const index = btnAddCarrinho.getAttribute("data-index")
+        arraycarrinho.push(ovos[index])
         displayContagem.innerText = arraycarrinho.length;
         botarnoCarrinho();
-    });
+    })
     
 });
 
-
 function botarnoCarrinho() {
     if (arraycarrinho.length === 0) {
-        listaCarrinho.innerText("Seu carrinho está vazio.")
+        listaCarrinho.innerText = "Seu carrinho está vazio."
         return;
     } else {
       listaCarrinho.innerHTML = arraycarrinho.map(item => `
+        <img src="${item.foto}">
         <p>${item.titulo}</p>
         <p>${item.precoNovo}</p>
      `).join('');
     }
 };
+

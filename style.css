@@ -53,6 +53,9 @@ header input{
     border-radius: 6px;
     border: none;
 }
+header span{
+    float: right;
+}
 
 /*MAIN*/
 main{
@@ -109,10 +112,10 @@ main div h2{
 }
 main div button{
     margin-left: 5px;
-    margin-top: 5px;
+    margin-top: auto;
+    position: absolute;
     height: 35px;
     width: 240px;
-    float: inherit;
     border-radius: 10px;
     border: none;
     background-color: #f5ead4;
@@ -132,6 +135,7 @@ main div button:hover{
 .preco2{
     font-size: 16px;
     color: green;
+    margin-bottom: 3px;
 }
 
 /*ASIDE*/
