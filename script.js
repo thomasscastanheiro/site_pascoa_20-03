@@ -78,10 +78,20 @@ btnAddCarrinho.forEach(btnAddCarrinho => {
         const index = btnAddCarrinho.getAttribute("data-index")
         arraycarrinho.push(ovos[index])
         displayContagem.innerText = arraycarrinho.length;
+        if (document.querySelector('aside').style.display === "none"){
+            document.querySelector('aside').style.display = "block";
+            document.querySelector('main').style.height = "1500px";
+        } else {
+            document.querySelector('aside').style.display = "block";
+        }
         botarnoCarrinho();
     })
     
 });
+
+const btnMais = document.getElementsByClassName("mais");
+const btnMenos = document.getElementsByClassName("menos");
+let total = 1
 
 function botarnoCarrinho() {
     if (arraycarrinho.length === 0) {
@@ -89,10 +99,25 @@ function botarnoCarrinho() {
         return;
     } else {
       listaCarrinho.innerHTML = arraycarrinho.map(item => `
+        <div class="produtocarrinho">
         <img src="${item.foto}">
-        <p>${item.titulo}</p>
-        <p>${item.precoNovo}</p>
+        <h2>${item.titulo}</h2>
+        <h2 class="precos">${item.precoNovo}</h2>
+        <button class="menos">-</button>
+        <p id="resultado">${total}</p>
+        <button class="mais">+</button>
+        </div>  
      `).join('');
     }
+        
 };
+btnMais.addEventListener("click", () => {
+    total = total + 1;
+});
+        btnMenos.addEventListener("click", () => {
+    total = total - 1;
+});
+
+const precoTotal = listaCarrinho.getAttribute("h2.precos")
+console.log(precoTotal)
 

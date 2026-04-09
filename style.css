@@ -55,6 +55,11 @@ header input{
 }
 header span{
     float: right;
+    margin-right: -40px;
+    margin-top: 20px;
+    background-color: rgb(202, 0, 0);
+    color: white;
+    border-radius: 2px;
 }
 
 /*MAIN*/
@@ -110,7 +115,7 @@ main div h2{
     margin-left: 8px;
     margin-right: 5px;
 }
-main div button{
+.botaoadd{
     margin-left: 5px;
     margin-top: auto;
     position: absolute;
@@ -120,7 +125,7 @@ main div button{
     border: none;
     background-color: #f5ead4;
 }
-main div button:hover{
+.botaoadd:hover{
     transform: scale(1.03);
     transition: 0.5s;
     background-color: #f3e5cb;
@@ -152,6 +157,14 @@ aside{
 }
 aside h1{
     text-align: center;
+}
+.produtocarrinho{
+    height: 300px;
+    width: 100%;
+    margin-top: 10px;
+}
+button.produtocarrinho{
+    width: 50px;
 }
 
 /*FOOTER*/
