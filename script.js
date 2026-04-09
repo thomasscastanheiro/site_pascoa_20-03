@@ -3,6 +3,11 @@ btnCarrinho = document.getElementById("carrinho")
 
 btnCarrinho.addEventListener("click", () => {
     if (document.querySelector('aside').style.display === "none"){
+        if (arraycarrinho.length === 0) {
+            mensagemVazia.innerText = "Seu carrinho está vazio."
+        } else {
+            mensagemVazia.innerText = " "
+        }
         document.querySelector('aside').style.display = "block";
         document.querySelector('main').style.height = "1500px";
     } else {
@@ -89,35 +94,43 @@ btnAddCarrinho.forEach(btnAddCarrinho => {
     
 });
 
+let mensagemVazia = document.getElementById("mensagemvazia")
 const btnMais = document.getElementsByClassName("mais");
 const btnMenos = document.getElementsByClassName("menos");
 let total = 1
 
 function botarnoCarrinho() {
     if (arraycarrinho.length === 0) {
-        listaCarrinho.innerText = "Seu carrinho está vazio."
-        return;
-    } else {
-      listaCarrinho.innerHTML = arraycarrinho.map(item => `
+        mensagemVazia.innerText = "Seu carrinho está vazio."
+    } else{
+        mensagemVazia.innerText = " "
+    }
+      listaCarrinho.innerHTML = arraycarrinho.map((item, index )=> `
         <div class="produtocarrinho">
         <img src="${item.foto}">
         <h2>${item.titulo}</h2>
         <h2 class="precos">${item.precoNovo}</h2>
-        <button class="menos">-</button>
-        <p id="resultado">${total}</p>
-        <button class="mais">+</button>
+        <input type="number" min="1" value="1">
+        <button class="removedor" data-index="${index}"><img src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/trash-delete-white-icon.png"></button>
         </div>  
      `).join('');
-    }
-        
-};
-btnMais.addEventListener("click", () => {
-    total = total + 1;
-});
-        btnMenos.addEventListener("click", () => {
-    total = total - 1;
-});
 
-const precoTotal = listaCarrinho.getAttribute("h2.precos")
-console.log(precoTotal)
+     const btnRemovedor = document.querySelectorAll(".removedor");
+btnRemovedor.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const index = btn.getAttribute("data-index")
+        arraycarrinho.splice(index, 1)
+        displayContagem.innerText = arraycarrinho.length
+        botarnoCarrinho();
+    });
+    const produtosCarrinho = document.getElementsByClassName("produtocarrinho"); 
+    for (let index = 0; index < produtosCarrinho.length; index++) {
+    const precoProduto = produtosCarrinho[index].getElementsByClassName("precos")[0].innerText
+    console.log(precoProduto)
+}
+
+})}
+  
+
+
 
