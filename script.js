@@ -2,6 +2,7 @@
 btnCarrinho = document.getElementById("carrinho")
 btnfecharCarrinho = document.getElementById("fecharcarrinho")
 
+
 btnCarrinho.addEventListener("click", function() {
     document.querySelector('aside').style.display = "block";
     overlay.classList.add("ativo")
@@ -100,7 +101,7 @@ btnAddCarrinho.forEach(btnAddCarrinho => {
 let mensagemVazia = document.getElementById("mensagemvazia")
 const btnMais = document.getElementsByClassName("mais");
 const btnMenos = document.getElementsByClassName("menos");
-let total = 1
+
 
 function botarnoCarrinho() {
     if (arraycarrinho.length === 0) {
@@ -130,15 +131,33 @@ btnRemovedor.forEach(btn => {
         displayContagem.innerText = arraycarrinho.length
         botarnoCarrinho();
     });
-    const produtosCarrinho = document.getElementsByClassName("produtocarrinho"); 
-    for (let index = 0; index < produtosCarrinho.length; index++) {
-    const precoProduto = produtosCarrinho[index].getElementsByClassName("precos")[0].innerText
-    const quantidadeProduto =produtosCarrinho[index].getElementsByClassName("contador")[0].value
-    console.log(quantidadeProduto)
-}
+    
+ 
+})
+    const contador = document.querySelectorAll('.contador')
+    contador.forEach(input => {
+        input.addEventListener("input", atualizarPreco)
+    })
+    atualizarPreco();}
 
-})}
-  
+  function atualizarPreco(){
+    let total = 0
+    const produtosCarrinho = document.getElementsByClassName("produtocarrinho"); 
+       for (let index = 0; index < produtosCarrinho.length; index++) {
+        
+        let precoProduto = produtosCarrinho[index].getElementsByClassName("precos")[0].innerText
+        let quantidadeProduto =produtosCarrinho[index].getElementsByClassName("contador")[0].value
+        let preco = parseFloat(precoProduto.replace("R$","").replace(",","."))
+        total += preco*quantidadeProduto
+        
+        }
+        document.getElementById("total").innerText = "Preço total: R$"+total.toFixed(2).replace(".",",");
+        if (arraycarrinho.length === 0) {
+            document.getElementById("total").innerText = "Preço total: R$00,00"
+        }
+       }
+
+
 
 
 

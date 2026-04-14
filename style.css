@@ -178,7 +178,8 @@ aside{
 aside h1{
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 20px;
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
 }
 #fecharcarrinho{
     background-color: #faf2e8;
@@ -198,7 +199,6 @@ aside h1{
     margin-top: 5px;
 }
 aside div div{
-    border-top: 1px solid;
     display: flex;
     border-bottom: 1px solid #452217;
 }
@@ -252,6 +252,17 @@ div.infoproduto input{
 }
 .precos{
     color: rgb(55, 142, 55);
+}
+#total{
+    margin: 10px;
+    border-top: none;
+    width: 95%;
+    text-align: right;
+}
+#mensagemvazia{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 /*FOOTER*/
