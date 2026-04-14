@@ -1,6 +1,8 @@
 /*abrir o carrinho quando clicar no icone*/
 btnCarrinho = document.getElementById("carrinho")
-
+/*refazer isso pq mudei o carrinho
+click function() style.dislpay
+botaofechar click fucntio */
 btnCarrinho.addEventListener("click", () => {
     if (document.querySelector('aside').style.display === "none"){
         if (arraycarrinho.length === 0) {
@@ -10,9 +12,11 @@ btnCarrinho.addEventListener("click", () => {
         }
         document.querySelector('aside').style.display = "block";
         document.querySelector('main').style.height = "1500px";
+        overlay.classList.add("ativo")
     } else {
         document.getElementById("aside").style.display = "none";
         document.querySelector('main').style.height = "780px";
+        overlay.classList.remove("ativo")
     }
 });
 
@@ -86,8 +90,10 @@ btnAddCarrinho.forEach(btnAddCarrinho => {
         if (document.querySelector('aside').style.display === "none"){
             document.querySelector('aside').style.display = "block";
             document.querySelector('main').style.height = "1500px";
+            overlay.classList.add("ativo")
         } else {
             document.querySelector('aside').style.display = "block";
+            overlay.classList.remove("ativo")
         }
         botarnoCarrinho();
     })
