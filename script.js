@@ -1,24 +1,27 @@
 /*abrir o carrinho quando clicar no icone*/
 btnCarrinho = document.getElementById("carrinho")
-/*refazer isso pq mudei o carrinho
-click function() style.dislpay
-botaofechar click fucntio */
-btnCarrinho.addEventListener("click", () => {
-    if (document.querySelector('aside').style.display === "none"){
-        if (arraycarrinho.length === 0) {
+btnfecharCarrinho = document.getElementById("fecharcarrinho")
+
+btnCarrinho.addEventListener("click", function() {
+    document.querySelector('aside').style.display = "block";
+    overlay.classList.add("ativo")
+    if (arraycarrinho.length === 0) {
             mensagemVazia.innerText = "Seu carrinho está vazio."
-        } else {
-            mensagemVazia.innerText = " "
-        }
-        document.querySelector('aside').style.display = "block";
-        document.querySelector('main').style.height = "1500px";
-        overlay.classList.add("ativo")
     } else {
-        document.getElementById("aside").style.display = "none";
-        document.querySelector('main').style.height = "780px";
-        overlay.classList.remove("ativo")
+        mensagemVazia.innerText = " "
     }
-});
+})
+
+btnfecharCarrinho.addEventListener("click", function() {
+    document.querySelector('aside').style.display = "none";
+    overlay.classList.remove("ativo")
+})
+
+const overlay = document.getElementById("overlay")
+overlay.addEventListener("click", function() {
+    overlay.classList.remove("ativo")
+    document.querySelector('aside').style.display = "none"
+})
 
 /*aparecer os produtos no html*/
 let produtos = document.querySelector('.produtos');
@@ -87,14 +90,8 @@ btnAddCarrinho.forEach(btnAddCarrinho => {
         const index = btnAddCarrinho.getAttribute("data-index")
         arraycarrinho.push(ovos[index])
         displayContagem.innerText = arraycarrinho.length;
-        if (document.querySelector('aside').style.display === "none"){
             document.querySelector('aside').style.display = "block";
-            document.querySelector('main').style.height = "1500px";
             overlay.classList.add("ativo")
-        } else {
-            document.querySelector('aside').style.display = "block";
-            overlay.classList.remove("ativo")
-        }
         botarnoCarrinho();
     })
     
@@ -113,11 +110,15 @@ function botarnoCarrinho() {
     }
       listaCarrinho.innerHTML = arraycarrinho.map((item, index )=> `
         <div class="produtocarrinho">
-        <img src="${item.foto}">
-        <h2>${item.titulo}</h2>
+        <img src="${item.foto}" class="imgproduto">
+        <div class="infoproduto">
+        <h2 class="nome">${item.titulo}</h2>
         <h2 class="precos">${item.precoNovo}</h2>
-        <input type="number" min="1" value="1">
+        <div class="produtosemlinha">
+        <input type="number" min="1" value="1" class="contador">
         <button class="removedor" data-index="${index}"><img src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/trash-delete-white-icon.png"></button>
+        </div>
+        </div>
         </div>  
      `).join('');
 
@@ -132,7 +133,8 @@ btnRemovedor.forEach(btn => {
     const produtosCarrinho = document.getElementsByClassName("produtocarrinho"); 
     for (let index = 0; index < produtosCarrinho.length; index++) {
     const precoProduto = produtosCarrinho[index].getElementsByClassName("precos")[0].innerText
-    console.log(precoProduto)
+    const quantidadeProduto =produtosCarrinho[index].getElementsByClassName("contador")[0].value
+    console.log(quantidadeProduto)
 }
 
 })}
